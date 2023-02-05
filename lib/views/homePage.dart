@@ -1,4 +1,6 @@
 import "package:flutter/material.dart";
+import "package:rapid_api/models/recipe.dart";
+import "package:rapid_api/models/recipeapi.dart";
 import "package:rapid_api/widgets/card.dart";
 
 class homePage extends StatefulWidget {
@@ -9,6 +11,23 @@ class homePage extends StatefulWidget {
 }
 
 class _homePageState extends State<homePage> {
+  List<Recipe> _recipeList;
+  bool isLoading = true;
+
+  @override
+  void initState() {
+    super.initState();
+    getRecipes1();
+  }
+
+  Future<void> getRecipes1() async {
+    _recipeList = await RecipeApiClass.getRecipe();
+    setState(() {
+      isLoading = false;
+    });
+    print(_recipeList);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,13 +52,21 @@ class _homePageState extends State<homePage> {
           ],
         ),
       ),
-      body: RecipeCard(
-        title: "My Recipe",
-        cookTime: "2 hrs",
-        rating: "4.3",
-        thumbnailUrl:
-            "https://lh3.googleusercontent.com/rhMiiS2p6jCK_LhVbfYCb8FzW4ipzDk4xBEbphS3Hm0z7_ARb21ZpAb3SvqIvJfVRO6s5fEW07uw2mUgJtR4ayvMXA0r8xC4VBE",
-      ),
+      body: isLoading
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : ListView.builder(
+            itemCount: _recipeList.length,
+              itemBuilder: (context, index) {
+                return RecipeCard(
+                  title: _recipeList[index].name,
+                  rating: _recipeList[index].rating.toString(),
+                  cookTime: _recipeList[index].totalTime,
+                  thumbnailUrl: _recipeList[index].images,
+                );
+              },
+            ),
     );
   }
 }
