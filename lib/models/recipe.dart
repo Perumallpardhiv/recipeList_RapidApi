@@ -1,3 +1,4 @@
+// Class for Recipe Data Fields
 class Recipe {
   final String name;
   final String images;
@@ -11,6 +12,7 @@ class Recipe {
     this.totalTime,
   });
 
+  // Method for converting data from json to dart class
   factory Recipe.fromJson(dynamic json) {
     String link;
     if (json['images'] != null) {
@@ -27,6 +29,7 @@ class Recipe {
     );
   }
 
+  // Method used for converting all data in given snapshot
   static List<Recipe> recipeFromSnapshot(List snapshot) {
     return snapshot.map((e) {
       return Recipe.fromJson(e);

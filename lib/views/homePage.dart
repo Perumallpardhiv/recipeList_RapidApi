@@ -57,7 +57,7 @@ class _homePageState extends State<homePage> {
               child: CircularProgressIndicator(),
             )
           : ListView.builder(
-            itemCount: _recipeList.length,
+              itemCount: _recipeList.length,
               itemBuilder: (context, index) {
                 return RecipeCard(
                   title: _recipeList[index].name,
