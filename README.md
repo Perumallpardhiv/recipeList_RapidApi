@@ -32,7 +32,7 @@ List the ready features here:
 
 ## Contact
 Created by [@perumallpardhiv](https://github.com/Perumallpardhiv)\
-For any Feedback, feel free to contact me on [Gmail](mailto:lit202100@iiitl.ac.in)
+For any query, feel free to contact me on [Gmail](mailto:lit202100@iiitl.ac.in)
 
 ## Screenshots
 
